@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import './globals.css'
 import QueryClientProvider from '../context/QueryClientProvider';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] })
+const jost = Jost({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,9 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <QueryClientProvider>
-        <body className={inter.className}>{children}</body>
-      </QueryClientProvider>
+        <body className={`${jost.className} bg-gradient-green-to-dark w-full h-screen text-white relative`}>
+          <QueryClientProvider>
+            <Header />
+            {children}
+            <Footer />
+          </QueryClientProvider>
+        </body>
     </html>
   )
 }
