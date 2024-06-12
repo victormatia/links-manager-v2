@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run db:generate && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run db:generate && next start",
     "lint": "next lint",
     "db:generate": "dotenv -e .env.local -- npx prisma generate",
     "db:studio": "dotenv -e .env.local -- npx prisma studio",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
     "@prisma/client": "^5.14.0",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
