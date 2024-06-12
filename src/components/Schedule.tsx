@@ -11,7 +11,7 @@ type TProps = {
   isEditing: boolean
 }
 
-export default function Schedule({ isEditing }: TProps) {
+export default function ScheduleComponent({ isEditing }: TProps) {
 
   const { data, isLoading } = useQuery<Schedule[]>({
     queryKey: ['schedule'],
