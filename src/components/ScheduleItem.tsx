@@ -5,13 +5,12 @@ import { Button } from "./ui/button";
 import { useMutation } from "@tanstack/react-query";
 import queryClient from "@/lib/QueryClient";
 import axios from "axios";
+import { DELETE_EVENT_URL } from "@/utils/constants";
 
 type TProps = {
   isEditing: boolean,
   event: Schedule,
 }
-
-const URL = 'http://localhost:3000/api/schedule/delete-event/'
 
 export default function ScheduleItem({ event, isEditing }: TProps) {
 
@@ -30,7 +29,7 @@ export default function ScheduleItem({ event, isEditing }: TProps) {
     mutationKey: ['delete-event'],
     mutationFn: (id: number) => {
       console.log(id)
-      return axios.delete(URL + id)
+      return axios.delete(DELETE_EVENT_URL + id)
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['schedule'] });

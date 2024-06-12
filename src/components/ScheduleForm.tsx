@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import queryClient from '@/lib/QueryClient';
 import EventSkeleton from './EventSkeleton';
+import { CREATE_EVENT_URL } from '@/utils/constants';
 
 type Tprops = {
   toggle: Dispatch<SetStateAction<boolean>>
@@ -25,8 +26,6 @@ const schema = z.object({
   eventPlace: z.string().min(1).max(100),
 });
 
-const URL = 'http://localhost:3000/api/schedule/create-event';
-
 export default function ScheduleForm({
   toggle,
 }: Tprops) {
@@ -37,7 +36,7 @@ export default function ScheduleForm({
 
   const addEvent = useMutation({
     mutationKey: ['create-new-event'],
-    mutationFn: async (event: Schedule) => axios.post(URL, event),
+    mutationFn: async (event: Schedule) => axios.post(CREATE_EVENT_URL, event),
     onSuccess: async () => {
       form.reset();
       await queryClient.invalidateQueries({ queryKey: ['schedule'] });

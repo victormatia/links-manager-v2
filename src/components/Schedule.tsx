@@ -5,6 +5,7 @@ import ScheduleItem from "./ScheduleItem";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import EventSkeleton from "./EventSkeleton";
+import { SCHEDULE_URL } from "@/utils/constants";
 
 type TProps = {
   isEditing: boolean
@@ -15,7 +16,7 @@ export default function Schedule({ isEditing }: TProps) {
   const { data, isLoading } = useQuery<Schedule[]>({
     queryKey: ['schedule'],
     queryFn: async () => {
-      return (await axios.get('http://localhost:3000/api/schedule')).data;
+      return (await axios.get(SCHEDULE_URL)).data;
     }
   })
 
